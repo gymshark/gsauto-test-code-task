@@ -2,13 +2,11 @@
 
 ## Test Code Tasks
 
-1. Download the following zip file.
-2. Extract and open the project in IntelliJ.
+1. Clone this project
+2. Open the project in IntelliJ.
 3. Follow the task instructions below.
 4. Allow up to **90 minutes** for all three tasks.
 5. Zip up your project and attach it to this page.
-
-[Download TestCodeTask.zip](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c9d82a37-627b-4ac5-832f-4c7e0f41b93e/TestCodeTask.zip)
 
 ## Task 1: Cucumber FixMe
 
