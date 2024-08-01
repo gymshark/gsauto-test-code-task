@@ -9,16 +9,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SearchStepDefs {
   private WebDriver driver;
+  GoogleHomepage google = new GoogleHomepage();
+
 
   @Before
   public void setup() {
@@ -32,16 +30,15 @@ public class SearchStepDefs {
 
   @Given("^I am on the Google UK homepage$")
   public void iAmOnTheGoogleUkHomepage() {
-    driver.manage().window().maximize();
-    driver.get("https://www.google.co.uk");
+    google.googleHomepage(driver);
+    google.googleURL();
   }
   
   @When("I enter a search term")
   public void iEnterASearchTerm() {
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='L2AGLb2']"))).click();
-    driver.findElement(By.xpath("//input[@title='Search']")).sendKeys("BBC news");
-    driver.findElement(By.xpath("//input[@title='Search']")).sendKeys(Keys.ENTER);
+   google.selectCookieButton();
+    driver.findElement(By.id("APjFqb")).sendKeys("BBC news");
+    driver.findElement(By.id("APjFqb")).sendKeys(Keys.ENTER);
   }
 
   @Then("results relevant to the search term are returned")
@@ -51,4 +48,22 @@ public class SearchStepDefs {
       assertThat(header.getText()).as("Search results contains search term").contains("BBC");
     }
   }
+
+  @When ("I click on I'm Feeling Lucky")
+  public void clickOnImFeelingLucky() {
+    google.selectCookieButton();
+    driver.findElement(By.id("gbqfbb")).click();
+  }
+
+  @Then ("the url will reflect the search term")
+  public void verifyURLHasSearchTerm() {
+   driver.findElement(By.id("gbqfbb"));
+   String feelingLuckySearchText = String.valueOf(driver.findElement(By.id("gbqfbb")).getText());
+   String currentURL = driver.getCurrentUrl();
+
+   if (currentURL.contains(feelingLuckySearchText)) {
+     System.out.println("Test passes");
+    } else System.out.println("test fails");
+  }
+
 }
