@@ -1,4 +1,4 @@
-package stepdefs;
+package stepdefs.FatimaTasks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;

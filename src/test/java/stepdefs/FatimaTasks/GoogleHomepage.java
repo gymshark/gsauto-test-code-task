@@ -1,7 +1,5 @@
-package stepdefs;
+package stepdefs.FatimaTasks;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
