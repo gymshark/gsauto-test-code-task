@@ -4,33 +4,45 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 
 public class GoogleHomePage {
 
+  By textBox = By.name("q");
+  By luckyButton = By.name("btnI");
+  By googleButton = By.name("btnK");
+  By cookieButton = By.id("L2AGLb");
+
   public WebDriver driver;
+  SeleniumOperations seleniumOperations;
+
+
   public GoogleHomePage(WebDriver driver) {
     this.driver = driver;
+    this.seleniumOperations = new SeleniumOperations(driver);
+  }
+
+  // Method to enter a search term
+  public void googleButton_search() {
+    seleniumOperations.waitForElementToBeClickable(googleButton).sendKeys(Keys.ENTER);
+  }
+
+  // Method to enter a search term
+  public void luckyButton_search() {
+    seleniumOperations.waitForElementToBeClickable(luckyButton).sendKeys(Keys.ENTER);
+    seleniumOperations.waitForElementToBeClickable(luckyButton).click();
+  }
+
+  public void cookieButton_search() {
+    seleniumOperations.waitForElementToBeClickable(cookieButton).sendKeys(Keys.ENTER);
+  }
+
+  public void textbox_element() {
+    seleniumOperations.waitForElementToBeVisible(textBox);
   }
 
   public static WebElement textBox_search(WebDriver driver) {
     return driver.findElement(By.name("q"));
   }
-
-  public static WebElement GoogleButton_search(WebDriver driver) {
-    return driver.findElement(By.name("btnK"));
-
-  }
-
-  public static WebElement LuckyButton_search(WebDriver driver) {
-    return driver.findElement(By.name("btnI"));
-
-  }
-
-  public static WebElement CookiesButton_search(WebDriver driver) {
-    return driver.findElement(By.id("L2AGLb"));
-  }
 }
+

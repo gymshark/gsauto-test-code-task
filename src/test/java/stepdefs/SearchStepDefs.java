@@ -5,14 +5,8 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobject.GoogleHomePage;
-
-import java.time.Duration;
-
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -45,20 +39,22 @@ public class SearchStepDefs {
   @When("I enter {string} search term")
   public void iEnterSearchTerm(String searchItem) {
 
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-    GoogleHomePage.CookiesButton_search(driver).click();
+    GoogleHomePage googleHomePage = new GoogleHomePage(driver);
+    googleHomePage.cookieButton_search();
+    googleHomePage.textbox_element();
     GoogleHomePage.textBox_search(driver).sendKeys(searchItem);
-    wait.until(ExpectedConditions.elementToBeClickable(GoogleHomePage.GoogleButton_search(driver))).sendKeys(Keys.ENTER);
+    googleHomePage.googleButton_search();
+
   }
 
   @When("I enter {string} in lucky search term")
   public void iEnterInLuckySearchTerm(String searchItem) {
 
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-    GoogleHomePage.CookiesButton_search(driver).click();
+    GoogleHomePage googleHomePage = new GoogleHomePage(driver);
+    googleHomePage.cookieButton_search();
+    googleHomePage.textbox_element();
     GoogleHomePage.textBox_search(driver).sendKeys(searchItem);
-    wait.until(ExpectedConditions.elementToBeClickable(GoogleHomePage.LuckyButton_search(driver))).sendKeys(Keys.ENTER);
-    GoogleHomePage.LuckyButton_search(driver).click();
+    googleHomePage.luckyButton_search();
   }
 
   @Then("results relevant to the search term are returned")
