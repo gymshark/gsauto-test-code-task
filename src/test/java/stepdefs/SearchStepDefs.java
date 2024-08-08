@@ -60,7 +60,7 @@ public class SearchStepDefs {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     GoogleHomePage.CookiesButton_search(driver).click();
     GoogleHomePage.textBox_search(driver).sendKeys(searchItem);
-    //wait.until(ExpectedConditions.elementToBeClickable(By.name("btnI"))).sendKeys(Keys.ENTER);
+    //wait.until(ExpectedConditions.elementToBeClickable(By.name("btnI"))).sendKeys(Keys.ENTER);//
     wait.until(ExpectedConditions.elementToBeClickable(GoogleHomePage.LuckyButton_search(driver))).sendKeys(Keys.ENTER);
     GoogleHomePage.LuckyButton_search(driver).click();
   }
