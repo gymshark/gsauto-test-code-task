@@ -22,18 +22,19 @@ public class GoogleHomePage {
     this.seleniumOperations = new SeleniumOperations(driver);
   }
 
-  // Method to enter a search term
   public void googleButton_search() {
+    seleniumOperations.waitForElementToBeVisible(googleButton);
     seleniumOperations.waitForElementToBeClickable(googleButton).sendKeys(Keys.ENTER);
   }
 
-  // Method to enter a search term
   public void luckyButton_search() {
+    seleniumOperations.waitForElementToBeVisible(luckyButton);
     seleniumOperations.waitForElementToBeClickable(luckyButton).sendKeys(Keys.ENTER);
     seleniumOperations.waitForElementToBeClickable(luckyButton).click();
   }
 
   public void cookieButton_search() {
+    seleniumOperations.waitForElementToBeVisible(cookieButton);
     seleniumOperations.waitForElementToBeClickable(cookieButton).sendKeys(Keys.ENTER);
   }
 
