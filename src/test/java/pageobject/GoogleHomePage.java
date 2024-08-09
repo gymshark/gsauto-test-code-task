@@ -16,7 +16,6 @@ public class GoogleHomePage {
   public WebDriver driver;
   SeleniumOperations seleniumOperations;
 
-
   public GoogleHomePage(WebDriver driver) {
     this.driver = driver;
     this.seleniumOperations = new SeleniumOperations(driver);
