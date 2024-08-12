@@ -1,4 +1,4 @@
-package stepdefs;
+package stepdefs.FatimaTasks;
 
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
