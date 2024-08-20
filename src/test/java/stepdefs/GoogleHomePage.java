@@ -1,9 +1,8 @@
-package newtest_java;
+package stepdefs;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -42,7 +41,6 @@ public class GoogleHomePage {
         WebElement luckyButton = wait.until(ExpectedConditions.visibilityOfElementLocated(iAmFeelingLucky));
         luckyButton.sendKeys(Keys.RETURN);
     }
-
     public String getCurrentURL (){
         return driver.getCurrentUrl();
     }
