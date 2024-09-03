@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GooglePage {
 
     private static final By REJECT_ALL = By.id("W0wltc");
-    private static final By ACCEPT_ALL = By.id("W0wltc");
+
 
     private static final By SEARCH_FIELD = By.id("APjFqb");
     private static final By SEARCH_RESULTS = By.xpath("//a/h3");
@@ -33,10 +33,6 @@ public class GooglePage {
         driver.get("https://www.google.co.uk/");
     }
 
-    public void selectAcceptAll() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(ACCEPT_ALL)).click();
-    }
 
     public void selectRejectAll() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));

@@ -26,7 +26,7 @@ public class SearchStepDefs {
     @Given("I am on the Google UK homepage")
     public void iAmOnTheGoogleUkHomepage() {
         google.navigateToGoogle();
-        google.selectAcceptAll();
+        google.selectRejectAll();
     }
 
     @When("I enter a search term 'BBC news'")
