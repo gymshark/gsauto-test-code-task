@@ -1,54 +1,56 @@
 package stepdefs;
 
+import Pages.GooglePage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class SearchStepDefs {
-  private WebDriver driver;
 
-  @Before
-  public void setup() {
-    driver = Setup.setupAndGetDriver();
-  }
+    GooglePage google = new GooglePage();
+    private WebDriver driver;
 
-  @After
-  public void teardown() {
-    driver.quit();
-  }
-
-  @Given("^I am on the Google UK homepage$")
-  public void iAmOnTheGoogleUkHomepage() {
-    driver.manage().window().maximize();
-    driver.get("https://www.google.co.uk");
-  }
-  
-  @When("I enter a search term")
-  public void iEnterASearchTerm() {
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='L2AGLb2']"))).click();
-    driver.findElement(By.xpath("//input[@title='Search']")).sendKeys("BBC news");
-    driver.findElement(By.xpath("//input[@title='Search']")).sendKeys(Keys.ENTER);
-  }
-
-  @Then("results relevant to the search term are returned")
-  public void resultsRelevantToTheSearchTermAreReturned() {
-    List<WebElement> resultHeaders = driver.findElements(By.xpath("//a/h3"));
-    for(WebElement header : resultHeaders) {
-      assertThat(header.getText()).as("Search results contains search term").contains("BBC");
+    @Before
+    public void setup() {
+        driver = Setup.setupAndGetDriver();
     }
-  }
+
+    @After
+    public void teardown() {
+        driver.quit();
+    }
+
+    @Given("I am on the Google UK homepage")
+    public void iAmOnTheGoogleUkHomepage() {
+        google.navigateToGoogle();
+        google.selectAcceptAll();
+    }
+
+    @When("I enter a search term 'BBC news'")
+    public void iEnterASearchTerm() {
+        google.getSearch();
+        google.enterSearchTerm();
+        google.clickGoogleSearch();
+    }
+
+    @Then("results relevant to the search term are returned")
+    public void resultsRelevantToTheSearchTermAreReturned() {
+        google.displaySearchResults();
+        google.navigateToGoogle();
+    }
+
+    @When("I tap on Feeling lucky button")
+    public void tapFeelingLuckyButton() {
+        google.tapFeelingLuckyButton();
+    }
+
+    @Then("Browser redirects to URL containing search term")
+    public void feelingLuckySearchResults() {
+        google.feelingLuckySearchResults();
+
+    }
+
 }
