@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.xml.sax.Locator;
@@ -18,15 +17,15 @@ public class GooglePage {
 
     private static final By REJECT_ALL = By.id("W0wltc");
 
-
     private static final By SEARCH_FIELD = By.id("APjFqb");
     private static final By SEARCH_RESULTS = By.xpath("//a/h3");
     private static final By FEELING_LUCKY = By.id("gbqfbb");
     //redirected to url that contains search term
     private WebDriver driver;
 
-    public GooglePage() {
-        this.driver = new ChromeDriver();
+
+    public GooglePage(WebDriver driver) {
+        this.driver = driver;
     }
 
 

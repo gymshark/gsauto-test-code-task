@@ -10,12 +10,13 @@ import org.openqa.selenium.WebDriver;
 
 public class SearchStepDefs {
 
-    GooglePage google = new GooglePage();
+    GooglePage google;
     private WebDriver driver;
 
     @Before
     public void setup() {
         driver = Setup.setupAndGetDriver();
+        google = new GooglePage(driver);
     }
 
     @After
@@ -42,12 +43,12 @@ public class SearchStepDefs {
         google.navigateToGoogle();
     }
 
-    @When("I tap on Feeling lucky button")
+    @When("^I tap on Feeling lucky button$")
     public void tapFeelingLuckyButton() {
         google.tapFeelingLuckyButton();
     }
 
-    @Then("Browser redirects to URL containing search term")
+    @Then("^Browser redirects to URL containing search term$")
     public void feelingLuckySearchResults() {
         google.feelingLuckySearchResults();
 
