@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.xml.sax.Locator;
 
 import java.time.Duration;
 import java.util.List;
@@ -29,27 +28,23 @@ public class GooglePage {
     }
 
 
-    public void waitForElementToBeClickable(Locator locator) {
+    public void waitForElementToBeClickable(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver,
                 Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable((By) locator)).click();
-
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
 
     public void navigateToGoogle() {
         driver.manage().window().maximize();
         driver.get("https://www.google.co.uk/");
+
     }
 
-/*
-    public void selectRejectAll() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(REJECT_ALL)).click();
-    } */
 
     public void selectRejectAll() {
-        waitForElementToBeClickable((Locator) REJECT_ALL);
+        waitForElementToBeClickable((WebElement) REJECT_ALL);
+        driver.findElement(REJECT_ALL).click();
 
     }
 
@@ -73,8 +68,9 @@ public class GooglePage {
     }
 
     public void tapFeelingLuckyButton() {
-        waitForElementToBeClickable((Locator) FEELING_LUCKY);
-        // driver.findElement(FEELING_LUCKY).click();
+        //  waitForElementToBeClickable((Locator) FEELING_LUCKY);
+        driver.findElement(FEELING_LUCKY).click();
+
     }
 
     public void feelingLuckySearchResults() {
