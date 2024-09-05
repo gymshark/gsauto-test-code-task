@@ -23,20 +23,20 @@ public class SearchStepDefs {
         driver.quit();
     }
 
-    @Given("I am on the Google UK homepage")
+    @Given("^I am on the Google UK homepage$")
     public void iAmOnTheGoogleUkHomepage() {
         google.navigateToGoogle();
         google.selectRejectAll();
     }
 
-    @When("I enter a search term 'BBC news'")
+    @When("^I enter a search term \"BBC news\"$")
     public void iEnterASearchTerm() {
         google.getSearch();
         google.enterSearchTerm();
         google.clickGoogleSearch();
     }
 
-    @Then("results relevant to the search term are returned")
+    @Then("^results relevant to the search term are returned$")
     public void resultsRelevantToTheSearchTermAreReturned() {
         google.displaySearchResults();
         google.navigateToGoogle();
