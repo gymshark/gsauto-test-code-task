@@ -49,8 +49,24 @@ public class SearchStepDefs {
     googlesearch.clickImFeelingLucky();
   }
 
+  @When("I enter a search term")
+  public void iEnterASearchTerm() {
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='L2AGLb2']"))).click();
+    driver.findElement(By.xpath("//input[@title='Search']")).sendKeys("BBC news");
+    driver.findElement(By.xpath("//input[@title='Search']")).sendKeys(Keys.ENTER);
+  }
+
   @Then("I should be redirected to a URL containing {string}")
   public void i_should_be_redirected_to_a_url_containing(String expectedTerm) {
    googlesearch.getCurrentURL();
+  }
+
+  @Then("results relevant to the search term are returned")
+  public void resultsRelevantToTheSearchTermAreReturned() {
+    List<WebElement> resultHeaders = driver.findElements(By.xpath("//a/h3"));
+    for(WebElement header : resultHeaders) {
+      assertThat(header.getText()).as("Search results contains search term").contains("BBC");
+    }
   }
 }
