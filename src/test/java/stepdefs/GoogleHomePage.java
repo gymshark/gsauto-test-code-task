@@ -14,8 +14,8 @@ public class GoogleHomePage {
 
     // locators
     private By cookiesAcceptBtn = By.id("L2AGLb");
-    private By searchBox = By.name("btnK");
-    private By iAmFeelingLucky = By.name("btnI");
+    private By searchBox = By.id("APjFqb");
+    private By iAmFeelingLucky = By.id("gbqfbb");
 
     // constructor
     public GoogleHomePage (WebDriver driver) {
@@ -27,15 +27,11 @@ public class GoogleHomePage {
     public void acceptCookies() {
         WebElement acceptButton = wait.until(ExpectedConditions.elementToBeClickable(cookiesAcceptBtn));
         acceptButton.click();
-
     }
-    public  void goToGoogleUK(){
-        driver.get("https://www.google.co.uk");
-    }
-
     public void searchFor(String searchTerm) {
         WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(searchBox));
         searchField.sendKeys(searchTerm);
+        driver.findElement(By.id("btnK")).click();
     }
     public void clickImFeelingLucky() {
         WebElement luckyButton = wait.until(ExpectedConditions.visibilityOfElementLocated(iAmFeelingLucky));
