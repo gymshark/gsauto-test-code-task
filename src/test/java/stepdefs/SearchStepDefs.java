@@ -39,9 +39,9 @@ public class SearchStepDefs {
   @When("I enter a search term")
   public void iEnterASearchTerm() {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='L2AGLb2']"))).click();
-    driver.findElement(By.xpath("//input[@title='Search']")).sendKeys("BBC news");
-    driver.findElement(By.xpath("//input[@title='Search']")).sendKeys(Keys.ENTER);
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='L2AGLb']"))).click();
+    driver.findElement(By.id("APjFqb")).sendKeys("BBC news");
+    driver.findElement(By.id("APjFqb")).sendKeys(Keys.ENTER);
   }
 
   @Then("results relevant to the search term are returned")
