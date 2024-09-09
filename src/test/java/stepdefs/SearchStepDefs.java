@@ -24,31 +24,31 @@ public class SearchStepDefs {
         driver.quit();
     }
 
-    @Given("^I am on the Google UK homepage$")
+    @Given("I am on the Google UK homepage")
     public void iAmOnTheGoogleUkHomepage() {
         google.navigateToGoogle();
         google.selectRejectAll();
     }
 
-    @When("^I enter a search term \"BBC news\"$")
+    @When("I enter a search term {string}")
     public void iEnterASearchTerm() {
         google.getSearch();
         google.enterSearchTerm();
         google.clickGoogleSearch();
     }
 
-    @Then("^results relevant to the search term are returned$")
+    @Then("results relevant to the search term are returned")
     public void resultsRelevantToTheSearchTermAreReturned() {
         google.displaySearchResults();
         google.navigateToGoogle();
     }
 
-    @When("^I tap on Feeling lucky button$")
+    @When("I tap on Feeling lucky button")
     public void tapFeelingLuckyButton() {
         google.tapFeelingLuckyButton();
     }
 
-    @Then("^Browser redirects to URL containing search term$")
+    @Then("Browser redirects to URL containing search term")
     public void feelingLuckySearchResults() {
         google.feelingLuckySearchResults();
 

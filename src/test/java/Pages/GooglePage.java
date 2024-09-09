@@ -28,10 +28,9 @@ public class GooglePage {
     }
 
 
-    public void waitForElementToBeClickable(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver,
-                Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+    public WebElement waitForElementToBeClickable(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        return (wait.until(ExpectedConditions.elementToBeClickable(element)));
     }
 
 
@@ -43,9 +42,7 @@ public class GooglePage {
 
 
     public void selectRejectAll() {
-        waitForElementToBeClickable((WebElement) REJECT_ALL);
-        driver.findElement(REJECT_ALL).click();
-
+        waitForElementToBeClickable((WebElement) REJECT_ALL).click();
     }
 
     public WebElement getSearch() {
@@ -68,8 +65,8 @@ public class GooglePage {
     }
 
     public void tapFeelingLuckyButton() {
-        //  waitForElementToBeClickable((Locator) FEELING_LUCKY);
-        driver.findElement(FEELING_LUCKY).click();
+        waitForElementToBeClickable((WebElement) FEELING_LUCKY).click();
+        //  driver.findElement(FEELING_LUCKY).click();
 
     }
 
