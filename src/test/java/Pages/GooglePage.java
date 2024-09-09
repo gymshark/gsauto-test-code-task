@@ -14,11 +14,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GooglePage {
 
-    private static final By REJECT_ALL = By.id("W0wltc");
-
     private static final By SEARCH_FIELD = By.id("APjFqb");
     private static final By SEARCH_RESULTS = By.xpath("//a/h3");
     private static final By FEELING_LUCKY = By.id("gbqfbb");
+    private static final By REJECT_ALL = By.id("W0wltc");
     //redirected to url that contains search term
     private WebDriver driver;
 
