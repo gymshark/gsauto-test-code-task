@@ -31,7 +31,7 @@ public class GoogleHomePage {
     public void searchFor(String searchTerm) {
         WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(searchBox));
         searchField.sendKeys(searchTerm);
-        driver.findElement(By.id("btnK")).click();
+        driver.findElement(By.id("btnK")).click();k();
     }
     public void clickImFeelingLucky() {
         WebElement luckyButton = wait.until(ExpectedConditions.visibilityOfElementLocated(iAmFeelingLucky));
