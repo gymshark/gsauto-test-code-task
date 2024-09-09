@@ -27,9 +27,9 @@ public class GooglePage {
     }
 
 
-    public WebElement waitForElementToBeClickable(WebElement element) {
+    public WebElement waitForElementToBeClickable(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        return (wait.until(ExpectedConditions.elementToBeClickable(element)));
+        return (wait.until(ExpectedConditions.elementToBeClickable(locator)));
     }
 
 
@@ -41,15 +41,15 @@ public class GooglePage {
 
 
     public void selectRejectAll() {
-        waitForElementToBeClickable((WebElement) REJECT_ALL).click();
+        waitForElementToBeClickable(REJECT_ALL).click();
     }
 
     public WebElement getSearch() {
         return driver.findElement(SEARCH_FIELD);
     }
 
-    public void enterSearchTerm() {
-        driver.findElement(SEARCH_FIELD).sendKeys("BBC news");
+    public void enterSearchTerm(String searchTerm) {
+        driver.findElement(SEARCH_FIELD).sendKeys(searchTerm);
     }
 
     public void clickGoogleSearch() {
@@ -64,7 +64,7 @@ public class GooglePage {
     }
 
     public void tapFeelingLuckyButton() {
-        waitForElementToBeClickable((WebElement) FEELING_LUCKY).click();
+        waitForElementToBeClickable(FEELING_LUCKY).click();
         //  driver.findElement(FEELING_LUCKY).click();
 
     }

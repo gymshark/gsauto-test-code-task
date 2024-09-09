@@ -31,9 +31,9 @@ public class SearchStepDefs {
     }
 
     @When("I enter a search term {string}")
-    public void iEnterASearchTerm() {
+    public void iEnterASearchTerm(String searchTerm) {
         google.getSearch();
-        google.enterSearchTerm();
+        google.enterSearchTerm(searchTerm);
         google.clickGoogleSearch();
     }
 
