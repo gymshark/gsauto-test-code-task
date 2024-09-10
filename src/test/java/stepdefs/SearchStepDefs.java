@@ -42,7 +42,7 @@ public class SearchStepDefs {
 
   @When("I type {string} into the search bar")
   public void i_type_into_the_search_bar(String searchTerm) {
-    googlesearch.searchFor(searchTerm);
+    googlesearch.enterSearch(searchTerm);
   }
 
   @When("I click on the \"I'm Feeling Lucky\" button")
@@ -52,7 +52,7 @@ public class SearchStepDefs {
 
   @Then("I should be redirected to a URL containing {string}")
   public void i_should_be_redirected_to_a_url_containing(String expectedTerm) {
-   googlesearch.getCurrentURL();
+    assertThat(googlesearch.getCurrentURL()).as("Search results contains search term").contains(expectedTerm);
   }
 
   @Then("results relevant to the search term are returned")

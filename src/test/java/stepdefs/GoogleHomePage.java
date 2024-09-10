@@ -1,10 +1,12 @@
 package stepdefs;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 public class GoogleHomePage {
@@ -15,12 +17,12 @@ public class GoogleHomePage {
     // locators
     private By cookiesAcceptBtn = By.id("L2AGLb");
     private By searchBox = By.id("APjFqb");
-    private By iAmFeelingLucky = By.id("gbqfbb");
+    private By iAmFeelingLucky = By.name("btnI");
 
     // constructor
-    public GoogleHomePage (WebDriver driver) {
+    public GoogleHomePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver , Duration.ofSeconds(20));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 // methods
 
@@ -28,20 +30,22 @@ public class GoogleHomePage {
         WebElement acceptButton = wait.until(ExpectedConditions.elementToBeClickable(cookiesAcceptBtn));
         acceptButton.click();
     }
-    public void searchFor(String searchTerm) {
-        WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(searchBox));
-        searchField.sendKeys(searchTerm + Keys.ENTER);
 
+    public void searchFor(String searchTerm) {
+        enterSearch(searchTerm + Keys.ENTER);
     }
+
     public void clickImFeelingLucky() {
         WebElement luckyButton = wait.until(ExpectedConditions.visibilityOfElementLocated(iAmFeelingLucky));
-        luckyButton.sendKeys(Keys.RETURN);
+        luckyButton.click();
     }
-    public String getCurrentURL (){
+
+    public String getCurrentURL() {
         return driver.getCurrentUrl();
     }
 
-
-
+    public void enterSearch(String searchTerm) {
+        WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(searchBox));
+        searchField.sendKeys(searchTerm);
+    }
 }
-
