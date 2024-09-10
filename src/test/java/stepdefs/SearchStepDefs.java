@@ -37,6 +37,7 @@ public class SearchStepDefs {
   public void iAmOnTheGoogleUkHomepage() {
     driver.manage().window().maximize();
     driver.get("https://www.google.co.uk");
+    googlesearch.acceptCookies();
   }
 
   @When("I type {string} into the search bar")
@@ -47,14 +48,6 @@ public class SearchStepDefs {
   @When("I click on the \"I'm Feeling Lucky\" button")
   public void i_click_on_the_i_m_feeling_lucky_button() {
     googlesearch.clickImFeelingLucky();
-  }
-
-  @When("I enter a search term")
-  public void iEnterASearchTerm() {
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='L2AGLb2']"))).click();
-    driver.findElement(By.xpath("//input[@title='Search']")).sendKeys("BBC news");
-    driver.findElement(By.xpath("//input[@title='Search']")).sendKeys(Keys.ENTER);
   }
 
   @Then("I should be redirected to a URL containing {string}")
@@ -68,5 +61,10 @@ public class SearchStepDefs {
     for(WebElement header : resultHeaders) {
       assertThat(header.getText()).as("Search results contains search term").contains("BBC");
     }
+  }
+
+  @When("I enter a search term {string}")
+  public void iEnterASearchTerm(String searchterm) {
+    googlesearch.searchFor(searchterm);
   }
 }

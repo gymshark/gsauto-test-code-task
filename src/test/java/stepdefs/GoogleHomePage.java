@@ -30,8 +30,8 @@ public class GoogleHomePage {
     }
     public void searchFor(String searchTerm) {
         WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(searchBox));
-        searchField.sendKeys(searchTerm);
-        driver.findElement(By.id("btnK")).click();k();
+        searchField.sendKeys(searchTerm + Keys.ENTER);
+
     }
     public void clickImFeelingLucky() {
         WebElement luckyButton = wait.until(ExpectedConditions.visibilityOfElementLocated(iAmFeelingLucky));
