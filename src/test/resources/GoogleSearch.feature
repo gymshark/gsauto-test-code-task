@@ -10,9 +10,9 @@ Feature: Search
     Then results relevant to the search term are returned
     Examples:
       | search_term |
-      | BBC news    |
+      | BBC news   |
       | GymShark    |
-      | QA process  |
+      | QA process |
 
   @Smoke
   Scenario: User is Navigated to the relevant URL
