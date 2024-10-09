@@ -39,14 +39,13 @@ public class SearchStepDefs {
     allSearchTerm = searchTerm;
     googleSearch.setAcceptAll();
     googleSearch.searchTerm(searchTerm);
-    googleSearch.searchButton();
   }
 
   @When("entered a search term and clicked on I am Feeling Lucky")
   public void enteredASearchTermAndClickedOnIAmFeelingLucky() {
     googleSearch.setAcceptAll();
     String searchText = "BBC";
-    googleSearch.searchTerm(searchText);
+    googleSearch.luckySearchTerm(searchText);
     googleSearch.clickImFeelingLucky();
   }
 

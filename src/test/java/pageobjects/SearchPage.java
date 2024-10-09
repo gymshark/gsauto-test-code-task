@@ -1,6 +1,7 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,12 +33,13 @@ public class SearchPage {
     wait.until(ExpectedConditions.elementToBeClickable(ACCEPT_ALL)).click();
   }
 
-  public void searchButton(){
-    WebElement searchButton = wait.until(ExpectedConditions.elementToBeClickable(SEARCH_BUTTON));
-    searchButton.click();
+  public void searchTerm(String searchTerm) {
+    WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(SEARCH_BUTTON));
+    searchField.sendKeys(searchTerm);
+    searchField.sendKeys(Keys.ENTER);
   }
 
-  public void searchTerm(String searchTerm) {
+  public void luckySearchTerm(String searchTerm) {
     WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(SEARCH_BUTTON));
     searchField.sendKeys(searchTerm);
   }
