@@ -5,20 +5,17 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.*;
+import pageobjects.SearchPage;
 
-import java.time.Duration;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SearchStepDefs {
   private WebDriver driver;
+  SearchPage googleSearch = new SearchPage();
+
 
   @Before
   public void setup() {
@@ -30,25 +27,39 @@ public class SearchStepDefs {
     driver.quit();
   }
 
+  private String allSearchTerm;
   @Given("^I am on the Google UK homepage$")
   public void iAmOnTheGoogleUkHomepage() {
-    driver.manage().window().maximize();
-    driver.get("https://www.google.co.uk");
+    googleSearch.SearchPage(driver);
+    googleSearch.googleURL();
   }
   
-  @When("I enter a search term")
-  public void iEnterASearchTerm() {
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='L2AGLb2']"))).click();
-    driver.findElement(By.xpath("//input[@title='Search']")).sendKeys("BBC news");
-    driver.findElement(By.xpath("//input[@title='Search']")).sendKeys(Keys.ENTER);
+  @When("I enter a {string}")
+  public void iEnterA(String searchTerm) {
+    allSearchTerm = searchTerm;
+    googleSearch.setAcceptAll();
+    googleSearch.searchTerm(searchTerm);
+  }
+
+  @When("entered a search term and clicked on I am Feeling Lucky")
+  public void enteredASearchTermAndClickedOnIAmFeelingLucky() {
+    googleSearch.setAcceptAll();
+    String searchText = "BBC";
+    googleSearch.luckySearchTerm(searchText);
+    googleSearch.clickImFeelingLucky();
   }
 
   @Then("results relevant to the search term are returned")
   public void resultsRelevantToTheSearchTermAreReturned() {
-    List<WebElement> resultHeaders = driver.findElements(By.xpath("//a/h3"));
+    List<WebElement> resultHeaders = googleSearch.getResultHeaders();
     for(WebElement header : resultHeaders) {
-      assertThat(header.getText()).as("Search results contains search term").contains("BBC");
+      assertThat(header.getText()).as("Search results contains search term").containsIgnoringCase(allSearchTerm);
     }
+  }
+
+  @Then("navigated to the relavant URL to the search entered")
+  public void navigatedToTheRelavantUrlToTheSearchEntered() {
+    String currentUrl = driver.getCurrentUrl();
+    assertThat(currentUrl).as("Search results contains search term").contains("bbc");
   }
 }
